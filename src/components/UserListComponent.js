@@ -18,18 +18,35 @@ class UserListComponent extends React.Component {
             });
             this.setState({
                 usersHTML: this.state.users.map(user => 
-                    <div key={user.id}>
-                        {user.id} {user.name} {user.secondName} {user.age}
-                    </div>
+                    <tr key={user.id}>
+                        <td>{user.id}</td>
+                        <td>{user.name}</td>
+                        <td>{user.secondName}</td>
+                        <td>{user.age}</td>
+                        <td>
+                            <button>Details</button>
+                        </td>
+                    </tr>
         )});
         })
     }
 
     render() {
         return (
-            <div>
-                {this.state.usersHTML}
-            </div>
+            <table className="table table-bordered">
+                <thead className="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Second Name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.state.usersHTML}
+                </tbody>
+            </table>
         );
     }
 }
