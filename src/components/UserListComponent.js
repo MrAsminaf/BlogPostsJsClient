@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 class UserListComponent extends React.Component {
     constructor(props) {
@@ -24,10 +25,13 @@ class UserListComponent extends React.Component {
                         <td>{user.secondName}</td>
                         <td>{user.age}</td>
                         <td>
-                            <button>Details</button>
+                            <button>
+                                <Link to='/:id'>Details</Link>
+                            </button>
                         </td>
                     </tr>
-        )});
+                )
+            });
         })
     }
 
