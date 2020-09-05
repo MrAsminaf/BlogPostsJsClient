@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import UserListComponent from './components/UserListComponent';
+import UserListComponent from './components/UserList/UserListComponent';
 import { Switch, Route } from 'react-router';
 
 function App() {
