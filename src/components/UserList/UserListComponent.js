@@ -5,20 +5,28 @@ class UserListComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: [],
-            usersHTML: []
+            users: []
         }
+    }
+
+    handleError(response) {
+        if (!response.ok) {
+            console.log("Error occured");
+        }
+        return response;
     }
 
     componentDidMount() {
         fetch("http://localhost:6600/api/users")
-        .then(results => results.json())
+        .then((results) => {
+            if (results.status !== 200) {
+                throw new Error("Server doesn't respond");
+            }
+            results.json();
+        })
         .then(data => {
             this.setState({
-                users: data
-            });
-            this.setState({
-                usersHTML: this.state.users.map(user => 
+                usersHTML: data.map(user => 
                     <tr key={user.id}>
                         <td>{user.id}</td>
                         <td>{user.name}</td>
@@ -32,6 +40,9 @@ class UserListComponent extends React.Component {
                     </tr>
                 )
             });
+        })
+        .catch((error) => {
+            console.log(error.message);
         })
     }
 
@@ -48,7 +59,7 @@ class UserListComponent extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.state.usersHTML}
+                    {this.state.users}
                 </tbody>
             </table>
         );
