@@ -12,6 +12,7 @@ class RegisterComponent extends React.Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.sendData = this.sendData.bind(this);
     }
 
     handleInputChange(event) {
@@ -22,11 +23,38 @@ class RegisterComponent extends React.Component {
         });
     }
 
-    handleSubmit(event) {
+    handleSubmit(event) {        
         event.preventDefault();
         console.log("Username: " + this.state.username);
         console.log("Email" + this.state.email);
         console.log("Password: " + this.state.password);
+
+        const object = {
+            "Username": this.state.username,
+            "Email": this.state.email,
+            "Password": this.state.password
+        }
+        console.log(JSON.stringify(object));
+        //this.sendData(object);
+    }
+
+    sendData(object) {
+        const url = 'http://localhost:6600/api/authentication/register';
+
+        const response = fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-chache',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(object)
+        });
+        console.log(response.JSON());
+        return response.JSON();
     }
 
     render() {
