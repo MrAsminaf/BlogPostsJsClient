@@ -30,21 +30,21 @@ class RegisterComponent extends React.Component {
         console.log("Password: " + this.state.password);
 
         const object = {
-            "Username": this.state.username,
-            "Email": this.state.email,
-            "Password": this.state.password
+            "username": this.state.username,
+            "email": this.state.email,
+            "password": this.state.password
         }
         console.log(JSON.stringify(object));
-        //this.sendData(object);
+        this.sendData(object);
     }
 
-    sendData(object) {
-        const url = 'http://localhost:6600/api/authentication/register';
+    async sendData(object) {
+        const url = 'http://localhost:6600/api/authenticate/register';
 
-        const response = fetch(url, {
+        const response = await fetch(url, {
             method: 'POST',
             mode: 'cors',
-            cache: 'no-chache',
+            cache: 'no-cache',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -53,8 +53,8 @@ class RegisterComponent extends React.Component {
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(object)
         });
-        console.log(response.JSON());
-        return response.JSON();
+        console.log(JSON.stringify(object));
+        console.log(response);
     }
 
     render() {
