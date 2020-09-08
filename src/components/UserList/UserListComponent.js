@@ -17,33 +17,41 @@ class UserListComponent extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:6600/api/users")
+        var token = 'Bearer ' + sessionStorage.getItem('token');
+
+        fetch("http://localhost:6600/api/users", {
+            method: 'GET',
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
         .then((results) => {
             if (results.status !== 200) {
                 throw new Error("Server doesn't respond");
             }
-            results.json();
-        })
-        .then(data => {
-            this.setState({
-                usersHTML: data.map(user => 
-                    <tr key={user.id}>
-                        <td>{user.id}</td>
-                        <td>{user.name}</td>
-                        <td>{user.secondName}</td>
-                        <td>{user.age}</td>
-                        <td>
-                            <button>
-                                <Link to='/:id'>Details</Link>
-                            </button>
-                        </td>
-                    </tr>
-                )
-            });
-        })
-        .catch((error) => {
-            console.log(error.message);
-        })
+            results.json().then((result) => {
+                this.setState({
+                    users: result.map(user => 
+                        <tr key={user.id}>
+                            <td>{user.id}</td>
+                            <td>{user.name}</td>
+                            <td>{user.secondName}</td>
+                            <td>{user.age}</td>
+                            <td>
+                                <button>
+                                    <Link to='/:id'>Details</Link>
+                                </button>
+                            </td>
+                        </tr>
+                    )
+                });
+            })
+            .catch((error) => {
+                console.log(error.message);
+            })
+        });
     }
 
     render() {

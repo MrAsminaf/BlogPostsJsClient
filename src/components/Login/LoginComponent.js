@@ -17,12 +17,32 @@ function LoginComponent() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        const url = 'http://localhost:6600/api/authenticate/login';
 
         const object = {
             "username": username,
             "password": password
         };
         console.log(JSON.stringify(object));
+
+        const response = fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(object)
+        }).then((response) => {
+            response.json().then((result) => {
+                console.log(result.token);
+                sessionStorage.setItem("token", result.token);
+            })
+        });
+        console.log(response);
     }
 
     return (
