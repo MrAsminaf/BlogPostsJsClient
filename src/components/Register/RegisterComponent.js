@@ -78,7 +78,7 @@ class RegisterComponent extends React.Component {
                     value={this.state.password} onChange={this.handleInputChange} 
                     className='form-control' id='passwordInput'/>
                 </div>
-                <button type='submit' className='btn btn-primary'>Submit</button>
+                <button type='submit' className='btn btn-primary'>Register</button>
             </form>
         );
     }
