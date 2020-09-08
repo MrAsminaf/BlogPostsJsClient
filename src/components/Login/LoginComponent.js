@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router';
 
 function LoginComponent() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [shouldRedirect, setShouldRedirect] = useState(false);
     
     function handleInputChange(event) {
         const name = event.target.name;
@@ -37,15 +39,24 @@ function LoginComponent() {
             referrerPolicy: 'no-referrer',
             body: JSON.stringify(object)
         }).then((response) => {
+            if (response.status !== 200) {
+                throw new Error("Server doesn't respond");
+            }
+
             response.json().then((result) => {
                 console.log(result.token);
                 sessionStorage.setItem("token", result.token);
+                setShouldRedirect(true);
             })
-        });
+        }).catch((error) => {
+            console.log(error.message);
+        })
+
+        
         console.log(response);
     }
 
-    return (
+    return shouldRedirect ? <Redirect to='/'/> : (
         <form onSubmit={handleSubmit}>
             <div className='form-group'>
                 <label htmlFor='usernameInput'>Username</label>
