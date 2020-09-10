@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import styles from './UserListComponent.module.css';
 
 class UserListComponent extends React.Component {
     constructor(props) {
@@ -40,7 +41,7 @@ class UserListComponent extends React.Component {
                             <td>{user.secondName}</td>
                             <td>{user.age}</td>
                             <td>
-                                <button>
+                                <button className={styles.button}>
                                     <Link to={`/details/${user.id}`}>Details</Link>
                                 </button>
                             </td>
@@ -56,6 +57,7 @@ class UserListComponent extends React.Component {
 
     render() {
         return (
+            <div className={styles.container}>
             <table className="table table-bordered p-3 mb-2 bg-dark text-white">
                 <thead className="thead-dark">
                     <tr>
@@ -70,6 +72,7 @@ class UserListComponent extends React.Component {
                     {this.state.users}
                 </tbody>
             </table>
+            </div>
         );
     }
 }
