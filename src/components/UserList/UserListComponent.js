@@ -32,7 +32,7 @@ class UserListComponent extends React.Component {
                 throw new Error("Server doesn't respond");
             }
             results.json().then((result) => {
-                this.setState({
+                this.setState({            
                     users: result.map(user => 
                         <tr key={user.id}>
                             <td>{user.id}</td>
@@ -41,7 +41,7 @@ class UserListComponent extends React.Component {
                             <td>{user.age}</td>
                             <td>
                                 <button>
-                                    <Link to='/:id'>Details</Link>
+                                    <Link to={`/details/${user.id}`}>Details</Link>
                                 </button>
                             </td>
                         </tr>

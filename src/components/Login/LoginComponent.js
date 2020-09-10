@@ -44,6 +44,7 @@ function LoginComponent() {
             }
 
             response.json().then((result) => {
+                console.log(result);
                 console.log(result.token);
                 sessionStorage.setItem("token", result.token);
                 setShouldRedirect(true);
