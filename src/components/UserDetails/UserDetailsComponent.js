@@ -3,14 +3,14 @@ import { useParams } from 'react-router';
 
 function UserDetailsComponent(props) {
     const {userId} = useParams();
-    const [user, setUser] = useState(1);
+    const [user, setUser] = useState({
+        "id": 0,
+        "name": "",
+        "secondName": ""
+    });
 
     useEffect(() => {
-        GetUserData();
-    }, []);
-
-    function GetUserData() {
-        var token = 'Bearer ' + sessionStorage.getItem('token');
+	    var token = 'Bearer ' + sessionStorage.getItem('token');
 
         fetch(`http://localhost:6600/api/users/${userId}`, {
             method: 'GET',
@@ -20,24 +20,25 @@ function UserDetailsComponent(props) {
                 'Accept': 'application/json'
             }
         })
-        .then((results) => {
-            if (results.status !== 200) {
-                throw new Error("Server doesn't respond");
+        .then((res) => {
+            if (res.status !== 200) {
+                throw new Error("Server does not respond");
             }
-            return results.json()
-        })
+
+            return res.json()}
+        )
         .then((result) => {
-            setUser(user + 1);
-            console.log(user);
+            setUser(result);
         })
-        .catch((error) => {
-            console.log(error.message);
-        });
-    }
+        .catch(() => {
+            console.log("Server does not respond");
+        })
+        
+    }, []);
 
     return (
         <div>
-            
+            {user.id} {user.name} {user.secondName}
         </div>
     );
 }
