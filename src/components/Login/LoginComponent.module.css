@@ -38,3 +38,21 @@ h4 {
     position: relative;
     top: -30px;
 }
+
+button {
+    background-color: #ec625f; /* Green */
+    border: none;
+    color: white;
+    padding: 11px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 50%;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: #ea4b48;
+    color: white;
+  }

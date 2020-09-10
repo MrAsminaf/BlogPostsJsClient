@@ -78,7 +78,7 @@ function LoginComponent() {
                 className={`form-control`} id='passwordInput'/>
             </div>
             <br></br>
-            <button type='submit' className='btn btn-primary'>Login</button>
+            <button type='submit'>Login</button>
         </form>
         </div>
     );
