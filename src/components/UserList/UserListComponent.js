@@ -56,7 +56,7 @@ class UserListComponent extends React.Component {
 
     render() {
         return (
-            <table className="table table-bordered">
+            <table className="table table-bordered p-3 mb-2 bg-dark text-white">
                 <thead className="thead-dark">
                     <tr>
                         <th scope="col">ID</th>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
+import styles from './LoginComponent.module.css';
 
 function LoginComponent() {
     const [username, setUsername] = useState("");
@@ -58,22 +59,28 @@ function LoginComponent() {
     }
 
     return shouldRedirect ? <Redirect to='/'/> : (
+        <div className={styles.loginForm}>
+            <h2>Blog Posts</h2>
+            <br></br>
+            <h4>Login to your account</h4>
         <form onSubmit={handleSubmit}>
-            <div className='form-group'>
-                <label htmlFor='usernameInput'>Username</label>
+            <div className='form-group' >
+                <label className={styles.label} htmlFor='usernameInput'>Username</label>
                 <input name='username' type='text'
                 value={username} onChange={handleInputChange}
-                className='form-control' id='usernameInput'/>
+                className={`form-control ${styles.label}`} id='usernameInput'/>
             </div>
+            <br></br>
             <div className='form-group'>
-                <label htmlFor='passwordInput'>Password</label>
+                <label className={styles.label} htmlFor='passwordInput'>Password</label>
                 <input name='password' type='password'
                 value={password} onChange={handleInputChange}
-                className='form-control' id='passwordInput'/>
+                className={`form-control`} id='passwordInput'/>
             </div>
+            <br></br>
             <button type='submit' className='btn btn-primary'>Login</button>
         </form>
-
+        </div>
     );
 }
 
