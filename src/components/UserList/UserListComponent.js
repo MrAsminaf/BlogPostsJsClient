@@ -44,6 +44,12 @@ class UserListComponent extends React.Component {
                                 <button className={styles.button}>
                                     <Link to={`/details/${user.id}`}>Details</Link>
                                 </button>
+                                <button className={styles.button}>
+                                    Edit
+                                </button>
+                                <button className={styles.button}>
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     )
