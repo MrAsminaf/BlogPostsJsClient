@@ -10,6 +10,9 @@
 }
 
 .button {
-    background-color: white;
+    background-color: #ec625f;
     color: white;
+    padding: 11px 28px;
+    color: white;
+    margin: 5px;
 }

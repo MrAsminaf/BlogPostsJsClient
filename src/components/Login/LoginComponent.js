@@ -20,7 +20,7 @@ function LoginComponent() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        const url = 'http://localhost:6600/api/authenticate/login';
+        const url = 'https://fastblog.herokuapp.com/api/authenticate/login';
 
         const object = {
             "username": username,

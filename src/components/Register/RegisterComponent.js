@@ -39,7 +39,7 @@ class RegisterComponent extends React.Component {
     }
 
     async sendData(object) {
-        const url = 'http://localhost:6600/api/authenticate/register';
+        const url = 'https://fastblog.herokuapp.com/api/authenticate/register';
 
         const response = await fetch(url, {
             method: 'POST',

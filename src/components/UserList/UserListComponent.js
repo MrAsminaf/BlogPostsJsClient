@@ -20,7 +20,7 @@ class UserListComponent extends React.Component {
     componentDidMount() {
         var token = 'Bearer ' + sessionStorage.getItem('token');
 
-        fetch("http://localhost:6600/api/users", {
+        fetch("https://fastblog.herokuapp.com/api/users", {
             method: 'GET',
             headers: {
                 'Authorization': token,
@@ -41,15 +41,13 @@ class UserListComponent extends React.Component {
                             <td>{user.secondName}</td>
                             <td>{user.age}</td>
                             <td>
-                                <button className={styles.button}>
-                                    <Link to={`/details/${user.id}`}>Details</Link>
-                                </button>
-                                <button className={styles.button}>
-                                    Edit
-                                </button>
-                                <button className={styles.button}>
-                                    Delete
-                                </button>
+                                <Link to={`/details/${user.id}`}>
+                                    <button className={styles.button}>Edit</button>
+                                </Link>
+                                <Link to={`/edit/${user.id}`}>
+                                    <button className={styles.button}>Edit</button>
+                                </Link>
+                                <button className={styles.button}>Delete</button>
                             </td>
                         </tr>
                     )

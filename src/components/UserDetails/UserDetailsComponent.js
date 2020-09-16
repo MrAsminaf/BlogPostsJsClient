@@ -12,7 +12,7 @@ function UserDetailsComponent(props) {
     useEffect(() => {
 	    var token = 'Bearer ' + sessionStorage.getItem('token');
 
-        fetch(`http://localhost:6600/api/users/${userId}`, {
+        fetch(`https://fastblog.herokuapp.com/api/users/${userId}`, {
             method: 'GET',
             headers: {
                 'Authorization': token,
