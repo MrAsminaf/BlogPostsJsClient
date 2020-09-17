@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import styles from  './UserDetailsComponent.module.css';
 
 function UserDetailsComponent(props) {
     const {userId} = useParams();
@@ -37,8 +38,17 @@ function UserDetailsComponent(props) {
     }, []);
 
     return (
-        <div>
-            {user.id} {user.name} {user.secondName}
+        <div className={styles.container}>
+            <div className='card text-white bg-dark mb-3'>
+                <div className='card-header'>
+                    ID: {user.id}
+                </div>
+                <div className='card-body'>
+                    Name: {user.name}
+                    <br></br>
+                    Second name: {user.secondName}
+                </div>
+            </div>
         </div>
     );
 }
